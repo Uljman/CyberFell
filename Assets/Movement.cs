@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour {
     Animator anim;
 	// Use this for initialization
 	void Start () {
-		
+        anim = transform.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -18,8 +18,8 @@ public class Movement : MonoBehaviour {
 
     void Move(float hMov)
     {
-        transform.Translate(new Vector3(hMov,0,0));
-        anim.SetFloat("Speed",Mathf.Abs(hMov));
+        transform.Translate(new Vector3(hMov,0,0) * 0.1f*Time.deltaTime* 10);
+        anim.SetFloat("Speed",Mathf.Abs(hMov)*0.1f);
         Flip(hMov);
     }
 
