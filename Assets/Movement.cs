@@ -7,19 +7,21 @@ public class Movement : MonoBehaviour {
     Animator anim;
 	// Use this for initialization
 	void Start () {
-        anim = transform.GetComponent<Animator>();
+        // may be changer for "graphics" later
+        anim = transform.Find("Sprite").GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         float hMovement = Input.GetAxis("Horizontal");
-        Move(hMovement);
+        float yMovement = Input.GetAxis("Vertical");
+        Move(hMovement, yMovement);
 	}
 
-    void Move(float hMov)
+    void Move(float hMov, float yMov)
     {
-        transform.Translate(new Vector3(hMov,0,0) * 0.1f*Time.deltaTime* 10);
-        anim.SetFloat("Speed",Mathf.Abs(hMov)*0.1f);
+        transform.Translate(new Vector3(hMov, yMov, 0) * 0.1f * Time.deltaTime * 10);
+        anim.SetFloat("Speed", Mathf.Abs(hMov) * 0.1f);
         Flip(hMov);
     }
 
